@@ -100,6 +100,7 @@ namespace TodoList.Api.UnitTests.Controllers
             Assert.Equal(nameof(TodoItemsController.GetTodoItemAsync), createdAtActionResult.ActionName);
             Assert.Equal(id, createdAtActionResult.RouteValues["id"]);
 
+            Assert.Equal(StatusCodes.Status201Created, createdAtActionResult?.StatusCode);
             var returnValue = Assert.IsType<TodoItem>(createdAtActionResult.Value);
             Assert.Equal(id, returnValue.Id);
             Assert.Equal("Test", returnValue.Description);

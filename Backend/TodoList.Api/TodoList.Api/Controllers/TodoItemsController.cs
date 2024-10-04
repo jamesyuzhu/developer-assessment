@@ -32,6 +32,7 @@ namespace TodoList.Api.Controllers
 
         // GET: api/TodoItems/...
         [HttpGet("{id}")]
+        [ActionName(nameof(GetTodoItemAsync))]
         public async Task<IActionResult> GetTodoItemAsync(Guid id)
         {
             var result = await _service.GetTodoItemAsync(id);
@@ -94,8 +95,8 @@ namespace TodoList.Api.Controllers
                 _logger.LogError(ex, ex.Message);
                 return Problem(statusCode: StatusCodes.Status500InternalServerError);
             }
-                          
-            return CreatedAtAction(nameof(GetTodoItemAsync), new { id = todoItem.Id }, todoItem);
+
+            return CreatedAtAction(nameof(GetTodoItemAsync), new { id = todoItem.Id }, todoItem);            
         }         
     }
 }
