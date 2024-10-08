@@ -37,7 +37,7 @@ namespace TodoList.Api.Services
             {
                 throw new NewTodoItemDescriptionExistException();
             }
-
+            if (item.Id == Guid.Empty) item.Id = Guid.NewGuid();
             await _repository.AddTodoItemAsync(item);
         }
 
